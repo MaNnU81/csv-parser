@@ -1,5 +1,6 @@
 const { log } = require("console");
 const fs = require("fs");
+const { json } = require("stream/consumers");
 
 
 function readCsvFromFile(filePath) {
@@ -63,6 +64,13 @@ function createArrayOfEntries(keys, values) {
     return arrayOfEntries;
 }
 
+function convertArrayToJson(arrayFromEntries) {
+    
+    const json = JSON.stringify(arrayFromEntries);
+    return json;
+
+}
+
 function fromCsvToJson(csv){
    
     const arrayOfStringRows = splitCsvInRows(csv);
@@ -117,7 +125,7 @@ console.log(keys);
     // //         gender: 'f'
     // //     }
     // // ]
-    // const json = convertArrayToJson(arrayFromEntries)
+    const jsonFile = convertArrayToJson(arrayFromEntries);
     // // '[
     // //     {
     // //         "name": "lorenzo",
@@ -139,7 +147,7 @@ console.log(keys);
     // //     }
     // // ]'
 
-    // return json
+    return jsonFile;
 }
 
 
@@ -147,13 +155,10 @@ function main(){
 
     const csvData = readCsvFromFile('./data/test1.csv');
 
-    
-
     const json = fromCsvToJson(csvData);
 
-    // writeJsonToFile(filePath, json);
-    
-    
+    writeJsonToFile(filePath, json);
+
 }
 
 main()
