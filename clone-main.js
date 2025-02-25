@@ -43,13 +43,13 @@ function createEntry(keys, valuesArray) {
     return obj;
 }
 
-function arrayOfEntry(keys, values) {
+function createArrayOfEntries(keys, values) {
     const arrayOfEntries = [];
 
     for (let i = 0; i < values.length; i++) {
         const valueEntry = values[i];
         const entry = createEntry(keys, valueEntry);
-        arrayOfEntry.push(entry);
+        arrayOfEntries.push(entry);
     }
     return arrayOfEntries;
 }
@@ -78,7 +78,8 @@ function main() {
     
     const csvData = readCsvFromFile('./data/test1.csv');
     const json = fromCsvToJson(csvData);
-
+    console.log(json);
+    writeJsonToFile('./output/test1.json', json);   //copilot
 }
 
 main()
