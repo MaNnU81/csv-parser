@@ -28,7 +28,7 @@ function splitRows(arrayOfStringRows){
         return splittedValue;
 }
 
-function getKeysFromFirsLine(arrayOfSplittedRows){
+function getKeysFromFirstLine(arrayOfSplittedRows){    
     const key = arrayOfSplittedRows[0];
     return key
 }
@@ -88,19 +88,19 @@ function fromCsvToJson(csv){
     // // ["sara","de prà","1989","f"]]
     
 
-    const keys = getKeysFromFirsLine(arrayOfSplittedRows);
+    const keys = getKeysFromFirstLine(arrayOfSplittedRows);
     // //["name","surname","yob","gender"]
 
 
 
-console.log(keys);
+// console.log(keys);
 
     const values = getValues(arrayOfSplittedRows);
     // // [["lorenzo","puppo","1995","m"],
     // // ["hugo","martinez","1994","m"],
     // // ["sara","de prà","1989","f"]]
 
-    console.log(values);
+    // console.log(values);
 
     const arrayFromEntries = createArrayOfEntries(keys, values);
 
@@ -151,13 +151,17 @@ console.log(keys);
 }
 
 
+function writeJsonToFile(filePath, content){
+    fs.writeFileSync(filePath, content)
+}
+
 function main(){
 
     const csvData = readCsvFromFile('./data/test1.csv');
 
     const json = fromCsvToJson(csvData);
 
-    writeJsonToFile(filePath, json);
+    // writeJsonToFile(filePath, json);
 
 }
 
